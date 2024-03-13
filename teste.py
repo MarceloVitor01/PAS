@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 
 dados_curso = """21111676,  Ana  Clara  Felix  Pereira,  4.310,  25.285,  6.314,  5.425,  10.590,  9.920,  1.654,  10.965,  0.000,  -
 53.834,  7,  -,  -,  -,  -,  -,  -,  -,  -,  -  /  21182638,  Caio  Soares  Couto,  2.586,  3.158,  5.076,  2.325,  19.890,  4.129, 
@@ -13,6 +14,32 @@ Andrade, 0.000, 0.000, 0.000, 2.325, 21.240, 8.477, 3.545, 19.378, 4.345,  -36.3
 Luis Fernando Silva, 0.000, 13.361, 7.704, 0.000, 26.206, 8.067, 5.672, 19.614, 6.667, -13.412, 3, -, -, -, -, -
 , -, -, -, -"""
 
+sql = """USE pas;
+
+        CREATE TABLE `curso`(
+            `inscricao` INT PRIMARY KEY,
+            `nome` VARCHAR(150),
+            `eb1_p1` DECIMAL (7, 3),
+            `eb2_p1` DECIMAL (7, 3),
+            `nr_p1` DECIMAL (7, 3),
+            `eb1_p2` DECIMAL (7, 3),
+            `eb2_p2` DECIMAL (7, 3),
+            `nr_p2` DECIMAL (7, 3),
+            `eb1_p3` DECIMAL (7, 3),
+            `eb2_p3` DECIMAL (7, 3),
+            `nr_p3` DECIMAL (7, 3),
+            `argumento_final` DECIMAL (7, 3),
+            `universal` INT,
+            `negros` VARCHAR(150),
+            `ppi_baixa_renda` VARCHAR(150),
+            `ppi_baixa_renda_pcd` VARCHAR(150),
+            `n_ppi_baixa_renda` VARCHAR(150),
+            `n_ppi_baixa_renda_pcd` VARCHAR(150),
+            `ppi_alta_renda` VARCHAR(150),
+            `ppi_alta_renda_pcd` VARCHAR(150),
+            `n_ppi_alta_renda` VARCHAR(150),
+            `n_ppi_alta_renda_pcd` VARCHAR(150)
+        );"""
 
 dados_curso = re.sub(r' +', '', dados_curso)
 dados_curso = re.sub(r'\n', '', dados_curso)
@@ -45,5 +72,5 @@ for aluno in alunos:
     n_ppi_alta_renda = dados_aluno[20]
     n_ppi_alta_renda_pcd = dados_aluno[21]
 
-    print(universal)
-    print('=' * 200)
+    print(dados_aluno)
+    print('=' * 150)
